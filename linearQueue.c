@@ -8,22 +8,26 @@ int rear=-1,front=-1;
 void insert()
 {
         int callid;
-        printf("Enter Caller ID to be added:");
-        scanf("%d",&callid);
-        if(rear=MAX-1)
+        if(rear==MAX-1)
         {
                 printf("Queue Overflow\n");
         }
-        else if(rear==-1)
-        {
-                front=0;
-                call[++rear]=callid;
-        }
         else
         {
-                call[++rear]=callid;
+                printf("Enter Caller ID to be added:");
+                scanf("%d",&callid);
+                if(rear==-1)
+                {
+                        front=0;
+                        call[++rear]=callid;
+                }
+                else
+                {
+                        call[++rear]=callid;
+                }
         }
 }
+
 void delete()
 {
         if(front==-1)
@@ -32,13 +36,15 @@ void delete()
         }
         else
         {
-                printf("Caller ID:%d Deleted",call[front++]);
+                printf("Caller ID:%d Deleted\n",call[front++]);
                 if(front>rear)
                 {
+                        printf("All elements deleted\nQueue Reset\n");
                         front=rear=-1;
                 }
         }
 }
+
 
 void display()
 {
@@ -66,7 +72,15 @@ int main()
                 scanf("%d",&x);
                 switch(x)
                 {
-                        case 1:
+                        case 1: insert();
+                                break;
+                        case 2: delete();
+                                break;
+                        case 3: display();
+                                break;
+                        default: exit(0);
                 }
         }
+        return 0;
+
 }
